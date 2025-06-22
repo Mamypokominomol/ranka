@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ร้านค้าออนไลน์ Modern Shop</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo" onclick="showPage('home')">🛒 ร้านค้าออนไลน์ Modern Shop</a>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="nav-link active" onclick="showPage('home')">หน้าแรก</a></li>
+                        <li><a href="#" class="nav-link" onclick="showPage('products')">สินค้า</a></li>
+                        <li><a href="#" class="nav-link" onclick="showPage('cart')">ตะกร้า</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon" onclick="showPage('cart')">
+                    🛒
+                    <span class="cart-count" id="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- หน้าแรก -->
+        <div id="home" class="page active">
+            <div class="hero">
+                <h1>ยินดีต้อนรับสู่ร้านค้าออนไลน์ Modern Shop</h1>
+                <p>ค้นพบสินค้าคุณภาพดีราคาเป็นมิตร</p>
+                <a href="#" class="btn" onclick="showPage('products')">เริ่มช็อปปิ้ง</a>
+            </div>
+
+            <div class="categories">
+                <div class="category-card" onclick="showPage('products'); filterProducts('electronics')">
+                    <div class="category-icon">📱</div>
+                    <h3>อิเล็กทรอนิกส์</h3>
+                    <p>โทรศัพท์ แท็บเล็ต อุปกรณ์เทคโนโลยี</p>
+                </div>
+                <div class="category-card" onclick="showPage('products'); filterProducts('fashion')">
+                    <div class="category-icon">👗</div>
+                    <h3>แฟชั่น</h3>
+                    <p>เสื้อผ้า รองเท้า เครื่องประดับ</p>
+                </div>
+                <div class="category-card" onclick="showPage('products'); filterProducts('home')">
+                    <div class="category-icon">🏠</div>
+                    <h3>ของใช้ในบ้าน</h3>
+                    <p>เฟอร์นิเจอร์ เครื่องใช้ไฟฟ้า</p>
+                </div>
+                <div class="category-card" onclick="showPage('products'); filterProducts('books')">
+                    <div class="category-icon">📚</div>
+                    <h3>หนังสือ</h3>
+                    <p>นิยาย การ์ตูน หนังสือเรียน</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- หน้าสินค้า -->
+        <div id="products" class="page">
+            <h2>สินค้าทั้งหมด</h2>
+            
+            <div class="category-filter">
+                <button class="filter-btn active" onclick="filterProducts('all', event)">ทั้งหมด</button>
+                <button class="filter-btn" onclick="filterProducts('electronics', event)">อิเล็กทรอนิกส์</button>
+                <button class="filter-btn" onclick="filterProducts('fashion', event)">แฟชั่น</button>
+                <button class="filter-btn" onclick="filterProducts('home', event)">ของใช้ในบ้าน</button>
+                <button class="filter-btn" onclick="filterProducts('books', event)">หนังสือ</button>
+            </div>
+
+            <div id="products-container" class="products-grid">
+                <!-- สินค้าจะถูกโหลดด้วย JavaScript -->
+            </div>
+        </div>
+
+        <!-- หน้าตะกร้า -->
+        <div id="cart" class="page">
+            <h2>ตะกร้าสินค้า</h2>
+            <div id="cart-items">
+                <!-- รายการสินค้าในตะกร้าจะแสดงที่นี่ -->
+            </div>
+            <div class="cart-total" id="cart-total-section" style="display: none;">
+                <div class="total-amount" id="total-amount">฿0</div>
+                <button class="btn checkout-btn" onclick="showPage('checkout')">ดำเนินการชำระเงิน</button>
+            </div>
+        </div>
+
+        <!-- หน้าชำระเงิน -->
+        <div id="checkout" class="page">
+            <h2>ชำระเงิน</h2>
+            <div class="checkout-form">
+                <form id="checkout-form">
+                    <div class="form-group">
+                        <label for="fullName">ชื่อ-นามสกุล</label>
+                        <input type="text" id="fullName" name="fullName" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">อีเมล</label>
+                        <input type="email" id="email" name="email" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">เบอร์โทรศัพท์</label>
+                        <input type="tel" id="phone" name="phone" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="address">ที่อยู่</label>
+                        <textarea id="address" name="address" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="payment">วิธีการชำระเงิน</label>
+                        <select id="payment" name="payment" required>
+                            <option value="">เลือกวิธีการชำระเงิน</option>
+                            <option value="credit">บัตรเครดิต</option>
+                            <option value="bank">โอนเงินผ่านธนาคาร</option>
+                            <option value="cod">ชำระเงินปลายทาง</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <div class="total-amount" id="checkout-total">฿0</div>
+                    </div>
+                    <button type="submit" class="checkout-btn">ยืนยันการสั่งซื้อ</button>
+                </form>
+            </div>
+        </div>
+    </main>
+   <script src="script.js"></script>
+</body>
+</html>
